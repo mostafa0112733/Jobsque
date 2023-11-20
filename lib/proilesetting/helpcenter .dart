@@ -3,7 +3,8 @@ import 'package:project/shapes/pagetitle.dart';
 import 'package:project/shapes/search.dart';
 
 class HelpCenter extends StatelessWidget {
-  const HelpCenter({super.key});
+  final String token;
+  const HelpCenter({super.key,required this.token});
 
   @override
   Widget build(BuildContext context) {
@@ -39,26 +40,27 @@ class HelpCenter extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              GoDown(),
+              GoDown( name: 'Lorem ipsum dolor sit amet',),
               SizedBox(
                 height: 15,
               ),
-              GoDown(),
+              GoDown( name: 'Lorem ipsum dolor sit amet',),
               SizedBox(
                 height: 15,
               ),
-              GoDown(),SizedBox(
-                height: 15,
-              ),
-              GoDown(),
+              GoDown( name: 'Lorem ipsum dolor sit amet',),
               SizedBox(
                 height: 15,
               ),
-              GoDown(),
+              GoDown( name: 'Lorem ipsum dolor sit amet',),
               SizedBox(
                 height: 15,
               ),
-              GoDown(),
+              GoDown( name: 'Lorem ipsum dolor sit amet',),
+              SizedBox(
+                height: 15,
+              ),
+              GoDown( name: 'Lorem ipsum dolor sit amet',),
             ],
           ),
         ),
@@ -67,7 +69,8 @@ class HelpCenter extends StatelessWidget {
   }
 }
 class GoDown extends StatelessWidget {
-  const GoDown({Key? key});
+  final String name;
+  const GoDown({Key? key,required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +84,7 @@ class GoDown extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Lorem ipsum dolor sit amet",
+            name ,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:project/shapes/pagetitle.dart';
 
 class PrivacyPolicy extends StatelessWidget {
-  const PrivacyPolicy({super.key});
+  final String token;
+
+  const PrivacyPolicy({super.key,required this.token});
 
   @override
   Widget build(BuildContext context) {

@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var jobs;
+
   Future<List<Map<String, dynamic>>> _api() async {
     final String apiUrl = "https://project2.amit-learning.com/api/jobs";
 
@@ -270,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     String about = job['about_comp'] ?? 'Unknown';
                     String salary = job['salary'] ?? 'Unknown';
                     String email = job['comp_email'] ?? 'Unknown';
-                    String jobId = job['id'].toString() ;
+                    String jobId = job['id'].toString();
                     String website = job['comp_website'] ?? 'Unknown';
 
                     mhiWidgets.add(MHI(
@@ -290,7 +291,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         email: email,
                         website: website,
                         token: widget.token,
-                        jobId: jobId, username: widget.userName,
+                        jobId: jobId,
+                        username: widget.userName,
                       ),
                     ));
                   }

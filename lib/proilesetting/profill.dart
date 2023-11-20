@@ -8,34 +8,25 @@ import 'package:project/proilesetting/Notification.dart';
 import 'package:project/proilesetting/editprofil.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/proilesetting/language.dart';
+import 'package:project/proilesetting/privacypolicy.dart';
+import 'package:project/proilesetting/terms&conditions.dart';
 import 'package:project/shapes/buttontitle.dart';
 import 'package:project/shapes/profilbutonns.dart';
 import 'package:project/shapes/profilbutoons2.dart';
 
+import 'helpcenter .dart';
+
 class Profil extends StatefulWidget {
   final String token;
-  const Profil({super.key, required this.token});
+  final String name;
+
+  const Profil({super.key, required this.token, required this.name});
+
   @override
   State<Profil> createState() => _ProfilState();
 }
 
 class _ProfilState extends State<Profil> {
-  late final String token;
-  var name;
-
-  Future<void> Api() async {
-    final String UrlApi = 'https://project2.amit-learning.com/api/auth/profile';
-
-    var response = await http.get(
-      Uri.parse(UrlApi),
-      headers: {'Authorization': 'Bearer ${widget.token}'},
-    );
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      name = data['name'];
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,25 +36,26 @@ class _ProfilState extends State<Profil> {
           Column(
             children: [
               Container(
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 4,
                 color: Colors.lightBlue,
               ),
               Padding(
                 padding: EdgeInsets.all(30),
                 child: Column(
                   children: [
-                    Text('$name',
+                    Text(widget.name,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         )),
-                    Text('hello',
+                    Text('Senior UI/UX Designer',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                         )),
+                    SizedBox(height: 20,),
                     Row(
                       children: [
                         Column(
@@ -205,17 +197,17 @@ class _ProfilState extends State<Profil> {
                     ProfileBittons2(
                       token: widget.token,
                       name: "Help Center",
-                      pageBuilder: (token) => EditProfil(token: token),
+                      pageBuilder: (token) => HelpCenter(token: token),
                     ),
                     ProfileBittons2(
                       token: widget.token,
                       name: "Terms & Conditions",
-                      pageBuilder: (token) => EditProfil(token: token),
+                      pageBuilder: (token) => TermsConditions(token: token),
                     ),
                     ProfileBittons2(
                       token: widget.token,
                       name: "Privacy Policy",
-                      pageBuilder: (token) => EditProfil(token: token),
+                      pageBuilder: (token) => PrivacyPolicy(token: token),
                     ),
                   ],
                 ),

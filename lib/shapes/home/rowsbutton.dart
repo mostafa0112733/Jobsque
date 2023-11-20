@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class RB extends StatelessWidget {
   final String name;
   final Color btncolor;
+
   const RB({super.key, required this.btncolor, required this.name});
 
   @override

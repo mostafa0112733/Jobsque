@@ -66,22 +66,26 @@ class _EditPhoneState extends State<EditPhone> {
       body: SafeArea(
           child: Padding(
         padding: EdgeInsets.all(30),
-        child: Column(
-          children: [
-            PageTitle(name: 'Phone number'),
-            TextFormFieldWithTitle(
-              name: 'Main phone number',
-              Controller: phoneController, icon: null,
-            ),
-            SwitchButton(
-              name: 'Use the phone number to reset your password',
-            ),
-            EndButton(
-              onPressed: _api,
-              name: 'save',
-              color: Colors.blue,
-            )
-          ],
+        child: ListView(
+          children: [Column(
+            children: [
+              PageTitle(name: 'Phone number'),
+              TextFormFieldWithTitle(
+                name: 'Main phone number',
+                Controller: phoneController, icon: null,
+              ),
+              SwitchButton(
+                name: 'Use the phone number to reset your \n password',
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/2,),
+              EndButton(
+                onPressed: _api,
+                name: 'save',
+                color: Colors.blue,
+              )
+            ],
+          ),
+        ]
         ),
       )),
     );

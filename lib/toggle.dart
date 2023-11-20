@@ -4,6 +4,8 @@ import 'package:project/appledjob/appledjob.dart';
 
 import 'package:project/proilesetting/profill.dart';
 
+import 'chats/home_chat.dart';
+
 class Togglebutton extends StatefulWidget {
   final String token;
 final int user_id;
@@ -31,28 +33,24 @@ class _TogglebuttonState extends State<Togglebutton> {
                   userName: widget.user,
                   token: widget.token,
                 ),
+                HomeChat(),
+                AppledJob(),
+                HomeChat(),
                 Profil(
-                  token: widget.token,
+                  token: widget.token, name: widget.user,
                 ),
-                AppledJob()
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          Row(
               children: [
                 ToggleButtons(
                   children: [
-                    Icon(
-                      Icons.home,
-                      size: 30,
-                    ),
-                    Icon(Icons.message),
-                    Icon(Icons.badge),
-                    Icon(Icons.message),
-                    Icon(Icons.person),
+                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.home,size: 30,),Text('Home'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
+                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.message,size: 30,),Text('Message'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
+                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.badge,size: 30,),Text('Applied'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
+                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.save,size: 30,),Text('Saved'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
+                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.person,size: 30,),Text('Profile'),SizedBox(width: MediaQuery.of(context).size.width/5,)]),
                   ],
                   isSelected: [
                     _selectedIndex == 0,
@@ -69,7 +67,7 @@ class _TogglebuttonState extends State<Togglebutton> {
                 ),
               ],
             ),
-          )
+
         ],
       ),
     ));

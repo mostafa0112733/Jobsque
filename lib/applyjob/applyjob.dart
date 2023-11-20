@@ -187,15 +187,15 @@ class _ApplyJobOneState extends State<ApplyJobOne> {
                         ),
                         TextFormFieldWithTitle(
                           name: 'Full Name*',
-                          Controller: NameController,
+                          Controller: NameController, icon: null,
                         ),
                         TextFormFieldWithTitle(
                           name: 'Email*',
-                          Controller: emailController,
+                          Controller: emailController, icon: null,
                         ),
                         TextFormFieldWithTitle(
                           name: 'No.Handphone*',
-                          Controller: MobileController,
+                          Controller: MobileController, icon: null,
                         ),
                         // final button
                         EndButton(

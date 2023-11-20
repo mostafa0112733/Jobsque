@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:project/shapes/pagetitle.dart';
 
 class TermsConditions extends StatelessWidget {
-  const TermsConditions({super.key});
+  final String token;
+
+  const TermsConditions({super.key,required this.token});
 
   @override
   Widget build(BuildContext context) {

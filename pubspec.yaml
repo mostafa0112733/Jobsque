@@ -47,6 +47,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   image_picker: ^0.8.4
+  file_picker: ^6.1.1
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -74,6 +76,8 @@ flutter:
     - assets/images/Icons/
     - assets/images/Workinterested/
     - assets/images/successful/
+    - assets/images/Two-Steps/
+    - assets/images/chat/
 
 
 

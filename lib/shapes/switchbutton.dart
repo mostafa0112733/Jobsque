@@ -18,9 +18,9 @@ class _SwitchButtonState extends State<SwitchButton> {
   decoration: BoxDecoration(
     border: Border.all(
       color: Colors.black, // Border color
-      width: 0.1, // Border width
+      width: 0.3, // Border width
     ),
-    borderRadius: BorderRadius.circular(8), // Border radius
+    borderRadius: BorderRadius.circular(8),
   ),
   child: Row(
     children: [
