@@ -27,19 +27,19 @@ class HomeChat extends StatelessWidget {
                 imgs: 'assets/images/chat/Twitter Logo.png',
                 text: 'Here is the link: http://zoom.com/abcdeefg'),
             MCI(
-                name: 'twittwr',
+                name: 'Gojek Indonesia',
                 imgs: 'assets/images/chat/Gojek Logo.png',
                 text: 'Let’s keep in touch.'),
             MCI(
-                name: 'twittwr',
+                name: 'Shoope',
                 imgs: 'assets/images/chat/Shoope Logo.png',
                 text: 'Thank You David!'),
             MCI(
-                name: 'twittwr',
+                name: 'Dana',
                 imgs: 'assets/images/chat/Slack Logo.png',
                 text: 'Thank you for your attention!'),
             MCI(
-                name: 'twittwr',
+                name: 'Facebook',
                 imgs: 'assets/images/chat/Facebook Logo.png',
                 text: 'You: What about the interview stage?'),
           ],

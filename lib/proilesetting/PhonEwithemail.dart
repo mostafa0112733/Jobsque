@@ -40,9 +40,9 @@ class _PhoneWithEmailState extends State<PhoneWithEmail> {
           children: [
             PageTitle(name: 'Two-step verification'),
             TextFormFieldWithTitle(
-                name: 'Add phone number', Controller: phoneController),
+                name: 'Add phone number', Controller: phoneController, icon: null,),
             TextFormFieldWithTitle(
-                name: 'Enter your password', Controller: passwordController),
+                name: 'Enter your password', Controller: passwordController, icon: null,),
             EndButton(onPressed: _api, name: 'Save',color: Colors.blue,)
           ],
         ),

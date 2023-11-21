@@ -68,15 +68,15 @@ class _CompleteFileTwoState extends State<CompleteFileTwo> {
                         ),
                         TextFormFieldWithTitle(
                           name: 'Bio',
-                          Controller: BioController,
+                          Controller: BioController, icon: null,
                         ),
                         TextFormFieldWithTitle(
                           name: 'Address',
-                          Controller: AddressController,
+                          Controller: AddressController, icon: null,
                         ),
                         TextFormFieldWithTitle(
                           name: 'Mobile',
-                          Controller: MobileController,
+                          Controller: MobileController, icon: null,
                         ),
                         SizedBox(
                             width: MediaQuery.of(context).size.width,

@@ -5,12 +5,18 @@ import 'package:project/appledjob/appledjob.dart';
 import 'package:project/proilesetting/profill.dart';
 
 import 'chats/home_chat.dart';
+import 'complete_profi/expeince.dart';
 
 class Togglebutton extends StatefulWidget {
   final String token;
-final int user_id;
+  final int user_id;
   final String user;
-  const Togglebutton({super.key, required this.token, required this.user,required this.user_id});
+
+  const Togglebutton(
+      {super.key,
+      required this.token,
+      required this.user,
+      required this.user_id});
 
   @override
   State<Togglebutton> createState() => _TogglebuttonState();
@@ -19,6 +25,7 @@ final int user_id;
 class _TogglebuttonState extends State<Togglebutton> {
   int _selectedIndex = 0;
   late final String token;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,39 +42,102 @@ class _TogglebuttonState extends State<Togglebutton> {
                 ),
                 HomeChat(),
                 AppledJob(),
-                HomeChat(),
+                Experience(
+                  token: widget.token,
+                  user_id: widget.user_id,
+                ),
                 Profil(
-                  token: widget.token, name: widget.user,
+                  token: widget.token,
+                  name: widget.user,
                 ),
               ],
             ),
           ),
           Row(
-              children: [
-                ToggleButtons(
-                  children: [
-                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.home,size: 30,),Text('Home'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
-                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.message,size: 30,),Text('Message'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
-                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.badge,size: 30,),Text('Applied'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
-                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.save,size: 30,),Text('Saved'),SizedBox(width: MediaQuery.of(context).size.width/5.3,)]),
-                    Column(children: [SizedBox(width: MediaQuery.of(context).size.width/5.3,),Icon(Icons.person,size: 30,),Text('Profile'),SizedBox(width: MediaQuery.of(context).size.width/5,)]),
-                  ],
-                  isSelected: [
-                    _selectedIndex == 0,
-                    _selectedIndex == 1,
-                    _selectedIndex == 2,
-                    _selectedIndex == 3,
-                    _selectedIndex == 4,
-                  ],
-                  onPressed: (index) {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                ),
-              ],
-            ),
-
+            children: [
+              ToggleButtons(
+                children: [
+                  Column(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    ),
+                    Icon(
+                      Icons.home,
+                      size: 30,
+                    ),
+                    Text('Home'),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    )
+                  ]),
+                  Column(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    ),
+                    Icon(
+                      Icons.message,
+                      size: 30,
+                    ),
+                    Text('Message'),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    )
+                  ]),
+                  Column(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    ),
+                    Icon(
+                      Icons.badge,
+                      size: 30,
+                    ),
+                    Text('Applied'),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    )
+                  ]),
+                  Column(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    ),
+                    Icon(
+                      Icons.save,
+                      size: 30,
+                    ),
+                    Text('Saved'),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    )
+                  ]),
+                  Column(children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5.3,
+                    ),
+                    Icon(
+                      Icons.person,
+                      size: 30,
+                    ),
+                    Text('Profile'),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 5,
+                    )
+                  ]),
+                ],
+                isSelected: [
+                  _selectedIndex == 0,
+                  _selectedIndex == 1,
+                  _selectedIndex == 2,
+                  _selectedIndex == 3,
+                  _selectedIndex == 4,
+                ],
+                onPressed: (index) {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+              ),
+            ],
+          ),
         ],
       ),
     ));

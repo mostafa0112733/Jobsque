@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:project/complete%20profile/Experience.dart';
-import 'package:project/complete%20profile/personaldetails.dart';
+// import 'package:project/complete%20profile/personaldetails.dart';
 import 'package:project/complete_profi/expeince.dart';
 import 'package:project/shapes/elevatedButtonwithTitle.dart';
 import 'package:project/shapes/pagetitle.dart';
@@ -74,11 +74,11 @@ class _EducationState extends State<Education> {
               PageTitle(name: 'Education'),
               TextFormFieldWithTitle(
                 name: 'University',
-                Controller: _universityController,
+                Controller: _universityController, icon: null,
               ),
               TextFormFieldWithTitle(
                 name: 'Title',
-                Controller: _titleController,
+                Controller: _titleController, icon: null,
               ),
               TextFormField(
                 decoration: InputDecoration(
