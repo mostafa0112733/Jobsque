@@ -21,40 +21,44 @@ class _PortfolioState extends State<Portfolio> {
   File? selectedFile;
 
   Future<void> _PostCv() async {
-    print('object');
-    // final String urlApi =
-    //     'https://project2.amit-learning.com/api/user/profile/portofolios';
-    // if (selectedFile != null) {
-    //   var response = await http.post(Uri.parse(urlApi),
-    //       headers: {'Authorization': 'Bearer ${widget.token}'},
-    //       body: jsonEncode({'cv_file': selectedFile}));
-    //
-    //   if (response.statusCode == 200) {
-    //     Navigator.push(
-    //         context,
-    //         MaterialPageRoute(
-    //             builder: (context) =>
-    //                 Languge(
-    //                   token: widget.token,
-    //                 )));
-    //   } else {
-    //     Navigator.push(
-    //         context,
-    //         MaterialPageRoute(
-    //             builder: (context) =>
-    //                 Languge(
-    //                   token: widget.token,
-    //                 )));
-    //   }
-    // }
-    // else {
-    //   Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //           builder: (context) =>
-    //               Languge(
-    //                 token: widget.token,
-    //               )));    }
+    final String urlApi =
+        'https://project2.amit-learning.com/api/user/profile/portofolios';
+
+    if (selectedFile != null) {
+      try {
+        // Read the file as bytes
+        List<int> fileBytes = await selectedFile!.readAsBytes();
+
+        // Encode file to base64
+        String base64File = base64Encode(fileBytes);
+
+        var response = await http.post(Uri.parse(urlApi),
+            headers: {
+              'Authorization': 'Bearer ${widget.token}',
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode({'cv_file': base64File}));
+
+        if (response.statusCode == 200) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      Languge(
+                        token: widget.token,
+                      )));
+        } else {
+          // Handle error, you may want to show a snackbar or an alert dialog
+          print("Error uploading file. Status code: ${response.statusCode}");
+        }
+      } catch (e) {
+        // Handle other exceptions
+        print("Error uploading file: $e");
+      }
+    } else {
+      // Handle the case where no file is selected
+      print("No file selected");
+    }
   }
   @override
   Widget build(BuildContext context) {
