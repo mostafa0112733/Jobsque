@@ -26,10 +26,8 @@ class _PortfolioState extends State<Portfolio> {
 
     if (selectedFile != null) {
       try {
-        // Read the file as bytes
         List<int> fileBytes = await selectedFile!.readAsBytes();
 
-        // Encode file to base64
         String base64File = base64Encode(fileBytes);
 
         var response = await http.post(Uri.parse(urlApi),
@@ -52,11 +50,9 @@ class _PortfolioState extends State<Portfolio> {
           print("Error uploading file. Status code: ${response.statusCode}");
         }
       } catch (e) {
-        // Handle other exceptions
         print("Error uploading file: $e");
       }
     } else {
-      // Handle the case where no file is selected
       print("No file selected");
     }
   }
