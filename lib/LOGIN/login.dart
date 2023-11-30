@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:project/LOGIN/forget_passwor.dart';
 import 'package:project/create%20account/signup.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,7 +9,6 @@ import 'package:project/shapes/LARTFF.dart';
 import 'package:project/shapes/endbutton.dart';
 import 'package:project/toggle.dart';
 
-import '../proilesetting/Two_step_verification.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -21,7 +21,7 @@ class _LogInState extends State<LogIn> {
   late final TextEditingController passwordController;
   late final TextEditingController emailController;
   Color buttonColor = Colors.grey;
-  late int  userId;
+  late int userId;
   late final String username;
 
   @override
@@ -52,46 +52,46 @@ class _LogInState extends State<LogIn> {
     }
   }
 
- Future<void> _login() async {
-  try {
-    String apiUrl = 'https://project2.amit-learning.com/api/auth/login';
+  Future<void> _login() async {
+    try {
+      String apiUrl = 'https://project2.amit-learning.com/api/auth/login';
 
-    var response = await http.post(
-      Uri.parse(apiUrl),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode({
-        "email": emailController.text,
-        "password": passwordController.text,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      var jsonResponse = jsonDecode(response.body);
-      String token = jsonResponse['token'];
-      final Map<String, dynamic> responseData = json.decode(response.body);
-      userId = responseData['user']['id'];
-      username = responseData['user']['name'];
-
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Togglebutton(
-            token: token, user: username, user_id: userId,
-          ),
-        ),
+      var response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          "email": emailController.text,
+          "password": passwordController.text,
+        }),
       );
-    } else {
-      print("Sign in failed!");
-      print("Status Code: ${response.statusCode}");
-      print("Response Body: ${response.body}");
-    }
-  } catch (error) {
-    print("Error during login: $error");
-    // Handle the error as needed (e.g., show an error message to the user).
-  }
-}
 
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        String token = jsonResponse['token'];
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        userId = responseData['user']['id'];
+        username = responseData['user']['name'];
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Togglebutton(
+              token: token,
+              user: username,
+              user_id: userId,
+            ),
+          ),
+        );
+      } else {
+        print("Sign in failed!");
+        print("Status Code: ${response.statusCode}");
+        print("Response Body: ${response.body}");
+      }
+    } catch (error) {
+      print("Error during login: $error");
+      // Handle the error as needed (e.g., show an error message to the user).
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +173,12 @@ class _LogInState extends State<LogIn> {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgetPassword()));
+                    },
                     child: Text('Forget password',
                         textAlign: TextAlign.right,
                         style: TextStyle(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project/LOGIN/resetpassword.dart';
+import 'package:project/LOGIN/login.dart';
 
-class checkYourEmail extends StatelessWidget {
-  const checkYourEmail({super.key});
+class PasswordChangedsSuccesfully extends StatelessWidget {
+  const PasswordChangedsSuccesfully({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +19,22 @@ class checkYourEmail extends StatelessWidget {
             'assets/images/directbox-receive.png',
           ),
           Text(
-            'Check your Email',
+            'Password Changeds Succesfully',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w500,
             ),
           ),
           Text(
-            'We have sent a reset password to your email address',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+              "Your password has been changed successfully, we will let you know if there are more problems with your account",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              )),
           ElevatedButton(
-            onPressed: () {Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ResetPassword()));},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn()));
+            },
             style: ElevatedButton.styleFrom(
               primary: Colors.blue,
               onPrimary: Colors.white,
