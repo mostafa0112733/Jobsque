@@ -65,7 +65,7 @@ class _AppledJobState extends State<AppledJob>
                               borderRadius: BorderRadius.circular(100)),
                           child: Center(
                             child: Image.asset(
-                              'assets/images/clipboard-close.png',
+                              'assets/images/successful/clipboard-close.png',
                               width: 50,
                               height: 50,
                               color: Colors.blue,

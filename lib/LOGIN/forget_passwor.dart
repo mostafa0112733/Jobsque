@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/LOGIN/CheckYourEmail.dart';
+import 'package:project/shapes/endbutton2.dart';
+import 'package:project/shapes/logo.dart';
+
+import '../shapes/LARTFF.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -9,6 +13,18 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+  late final TextEditingController emailController;
+@override
+  void initState() {
+  emailController = TextEditingController();
+
+  super.initState();
+  }
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,37 +33,31 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         padding: EdgeInsets.all(30),
         child: Column(
           children: [
+            Row(children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back),
+              ),
+              Spacer(),
+              Logo(
+                size: 13,
+              ),
+            ]),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "J",
+                  'Reset Password',
                   style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                Icon(
-                  Icons.search,
-                  size: 14,
-                ),
-                Text(
-                  'BSQUE',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                )
               ],
             ),
-            Text(
-              'Reset Password',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            SizedBox(height: 15,),
             Text(
               'Enter the email address you used when you joined and we’ll send you instructions to reset your password.',
               style: TextStyle(
@@ -55,46 +65,20 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email), labelText: 'Email address'),
+            SizedBox(height: 15,),
+            LAGTFF(
+              Controller: emailController,
+              name: 'Email address',
+              iconShape: Icons.email,
+              isPassword: false,
+              onChanged: (value) {
+
+              },
             ),
-            Row(
-              children: [
-                Text(
-                  'You remember your password',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(' Login',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    )),
-              ],
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => checkYourEmail()));
-                },
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    )),
-                child: Text(
-                  'Request password reset',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ))
+
+SizedBox(height: MediaQuery.of(context).size.height/2.2,),
+          EndButton2(path: checkYourEmail(), name: 'Request password reset', color: Colors.blue,),
+
           ],
         ),
       )),

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/LOGIN/Passwordchangedsuccesfully!.dart';
+import 'package:project/shapes/endbutton2.dart';
+
+import '../shapes/LARTFF.dart';
+import '../shapes/logo.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
@@ -9,6 +13,27 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  late final TextEditingController passwordController;
+  late final TextEditingController emailController;
+  Color buttonColor = Colors.grey;
+  late int userId;
+  late final String username;
+
+  @override
+  void initState() {
+    passwordController = TextEditingController();
+    emailController = TextEditingController();
+    userId = 1;
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    emailController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,80 +42,86 @@ class _ResetPasswordState extends State<ResetPassword> {
         padding: EdgeInsets.all(30),
         child: Column(
           children: [
+            Row(children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back),
+              ),
+              Spacer(),
+              Logo(
+                size: 13,
+              ),
+            ]),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "J",
+                  'Create new password',
                   style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                Icon(
-                  Icons.search,
-                  size: 14,
-                ),
-                Text(
-                  'BSQUE',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                )
               ],
             ),
-            Text(
-              'Reset Password',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w500,
-              ),
+            SizedBox(
+              height: 8,
             ),
             Text(
-              'Set your new password so you can login and acces Jobsque',
+              "Set your new password so you can login and acces Jobsque",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock),
-              ),
+            SizedBox(
+              height: 50,
             ),
-            Text("Password must be at least 8 characters",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                )),
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock),
-              ),
-            ),
-            Text("Both password must match",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                )),
+            LAGTFF(
+              Controller: emailController,
+              name: '',
+              iconShape: Icons.lock,
+              isPassword: true,
+              onChanged: (value) {
 
-            ElevatedButton(
-                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=> PasswordChangedsSuccesfully()));},
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+              },
+            ),
+
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Password must be at least 8 characters",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
                     )),
-                child: Text(
-                  'Request password reset',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ))
+              ],
+            ),
+            SizedBox(height: 15),
+            LAGTFF(
+              Controller: passwordController,
+              name: '',
+              iconShape: Icons.lock,
+              isPassword: true,
+              onChanged: (value) {
+
+              },
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Both password must match",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    )),
+              ],
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height/3.3,),
+            EndButton2(path: PasswordChangedsSuccesfully(), name: 'Request password reset', color: Colors.blue,),
+
           ],
         ),
       )),

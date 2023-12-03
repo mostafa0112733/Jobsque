@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/LOGIN/resetpassword.dart';
+import 'package:project/shapes/endbutton2.dart';
 
 class checkYourEmail extends StatelessWidget {
   const checkYourEmail({super.key});
@@ -10,8 +11,7 @@ class checkYourEmail extends StatelessWidget {
         body: SafeArea(
             child: Padding(
       padding: EdgeInsets.all(30),
-      child: Center(
-          child: Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -32,25 +32,16 @@ class checkYourEmail extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          ElevatedButton(
-            onPressed: () {Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ResetPassword()));},
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-              onPrimary: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)),
-            ),
-            child: Text('Open email app',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                )),
+          SizedBox(height: MediaQuery.of(context).size.height/2.9,),
+
+
+          EndButton2(
+            path: ResetPassword(),
+            name: 'Open email app',
+            color: Colors.blue,
           )
         ],
-      )),
+      ),
     )));
   }
 }

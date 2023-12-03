@@ -152,7 +152,7 @@ class _LogInState extends State<LogIn> {
               LAGTFF(
                 Controller: passwordController,
                 name: 'PassWord',
-                iconShape: Icons.password,
+                iconShape: Icons.lock,
                 isPassword: true,
                 onChanged: (value) {
                   isvalid();
