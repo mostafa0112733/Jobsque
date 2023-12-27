@@ -34,97 +34,103 @@ class _ResetPasswordState extends State<ResetPassword> {
     emailController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(30),
-        child: Column(
-          children: [
-            Row(children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back),
-              ),
-              Spacer(),
-              Logo(
-                size: 13,
-              ),
-            ]),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            padding: EdgeInsets.all(30),
+            child: Column(
               children: [
+                Row(children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back),
+                  ),
+                  Spacer(),
+                  Logo(
+                    size: 13,
+                  ),
+                ]),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Create new password',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
                 Text(
-                  'Create new password',
+                  "Set your new password so you can login and acces Jobsque",
                   style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
+                SizedBox(
+                  height: 50,
+                ),
+                LAGTFF(
+                  Controller: emailController,
+                  name: '',
+                  iconShape: Icons.lock,
+                  isPassword: true,
+                  onChanged: (value) {
+
+                  },
+                ),
+
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Password must be at least 8 characters",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 15),
+                LAGTFF(
+                  Controller: passwordController,
+                  name: '',
+                  iconShape: Icons.lock,
+                  isPassword: true,
+                  onChanged: (value) {
+
+                  },
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Both password must match",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        )),
+                  ],
+                ),
+                SizedBox(height: MediaQuery
+                    .of(context)
+                    .size
+                    .height / 3.3,),
+                EndButton2(path: PasswordChangedsSuccesfully(),
+                  name: 'Request password reset',
+                  color: Colors.blue,),
+
               ],
             ),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              "Set your new password so you can login and acces Jobsque",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            LAGTFF(
-              Controller: emailController,
-              name: '',
-              iconShape: Icons.lock,
-              isPassword: true,
-              onChanged: (value) {
-
-              },
-            ),
-
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Password must be at least 8 characters",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    )),
-              ],
-            ),
-            SizedBox(height: 15),
-            LAGTFF(
-              Controller: passwordController,
-              name: '',
-              iconShape: Icons.lock,
-              isPassword: true,
-              onChanged: (value) {
-
-              },
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Both password must match",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    )),
-              ],
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height/3.3,),
-            EndButton2(path: PasswordChangedsSuccesfully(), name: 'Request password reset', color: Colors.blue,),
-
-          ],
-        ),
-      )),
+          )),
     );
   }
 }

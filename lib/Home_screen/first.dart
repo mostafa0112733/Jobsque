@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:project/Home_screen/details.dart';
+import 'package:project/models/jobesmodel.dart';
 import 'package:project/shapes/home/mainhomeitem.dart';
 import 'package:project/shapes/home/rowsbutton.dart';
 import 'package:http/http.dart' as http;
@@ -20,25 +21,27 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var jobs;
 
-  Future<List<Map<String, dynamic>>> _api() async {
-    final String apiUrl = "https://project2.amit-learning.com/api/jobs";
+ Future<List<Job>> _api() async {
+  final String apiUrl = "https://project2.amit-learning.com/api/jobs";
 
-    var response = await http.get(
-      Uri.parse(apiUrl),
-      headers: {
-        'Authorization': 'Bearer ${widget.token}',
-      },
+  var response = await http.get(
+    Uri.parse(apiUrl),
+    headers: {
+      'Authorization': 'Bearer ${widget.token}',
+    },
+  );
+
+  if (response.statusCode == 200) {
+    var responseBody = json.decode(response.body);
+    List<Job> jobs = List<Job>.from(
+      (responseBody['data'] as List).map((job) => Job.fromJson(job)),
     );
-
-    if (response.statusCode == 200) {
-      var responseBody = json.decode(response.body);
-      List<Map<String, dynamic>> jobs =
-          List<Map<String, dynamic>>.from(responseBody['data']);
-      return jobs;
-    } else {
-      throw Exception('Failed to load data: ${response.statusCode}');
-    }
+    return jobs;
+  } else {
+    throw Exception('Failed to load data: ${response.statusCode}');
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -251,59 +254,48 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 15,
             ),
             //home page items
-            FutureBuilder<List<Map<String, dynamic>>>(
-              future: _api(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  List<Widget> mhiWidgets = [];
-                  for (var job in snapshot.data!) {
-                    String name = job['name'] ?? 'Unknown Job';
-                    String job_type =
-                        job['job_type'] ?? 'No description available';
-                    String imageUrl = job['image'] ?? 'Unknown';
-                    String job_time_type = job['job_time_type'] ?? 'Unknown';
-                    String dec = job['job_description'] ?? 'Unknown';
-                    String skill = job['job_skill'] ?? 'Unknown';
-                    String about = job['about_comp'] ?? 'Unknown';
-                    String salary = job['salary'] ?? 'Unknown';
-                    String email = job['comp_email'] ?? 'Unknown';
-                    String jobId = job['id'].toString();
-                    String website = job['comp_website'] ?? 'Unknown';
-
-                    mhiWidgets.add(MHI(
-                      name: name,
-                      imgs: imageUrl,
-                      jobType: job_type,
-                      rbName: job_time_type,
-                      salary: salary,
-                      path: Details(
-                        imgs: imageUrl,
-                        name: name,
-                        jobType: job_type,
-                        dec: dec,
-                        about: about,
-                        skill: skill,
-                        job_time_type: job_time_type,
-                        email: email,
-                        website: website,
-                        token: widget.token,
-                        jobId: jobId,
-                        username: widget.userName,
-                      ),
-                    ));
-                  }
-
-                  // Return a column containing the MHI widgets with job data.
-                  return Column(
-                    children: mhiWidgets,
-                  );
-                }
-              },
+          FutureBuilder<List<Job>>(
+  future: _api(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return Center(child: CircularProgressIndicator());
+    } else if (snapshot.hasError) {
+      return Text('Error: ${snapshot.error}');
+    } else {
+      List<Widget> mhiWidgets = [];
+      for (var job in snapshot.data!) {
+        mhiWidgets.add(
+          MHI(
+            name: job.name,
+            imgs: job.image,
+            jobType: job.jobType,
+            rbName: job.jobTimeType,
+            salary: job.salary,
+            path: Details(
+              imgs: job.image,
+              name: job.name,
+              jobType: job.jobType,
+              dec: job.jobDescription,
+              about: job.aboutCompany,
+              skill: job.jobSkill,
+              job_time_type: job.jobTimeType,
+              email: job.compEmail,
+              website: job.compWebsite,
+              token: widget.token,
+              jobId: job.id,
+              username: widget.userName,
             ),
+          ),
+        );
+      }
+
+      return Column(
+        children: mhiWidgets,
+      );
+    }
+  },
+),
+
           ],
         ),
       )),

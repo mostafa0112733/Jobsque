@@ -27,7 +27,7 @@ class ApplyJobFour extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100)),
               child: Center(
                 child: Image.asset(
-                  'assets/images/clipboard-tick.png',
+                  'assets/images/successful/clipboard-tick.png',
                   width: 50,
                   height: 50,
                   color: Colors.blue,

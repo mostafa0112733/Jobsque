@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project/onboadrdin/SplachScreen.dart';
+import 'package:project/provider/userprovider.dart';
+import 'package:provider/provider.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(   ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

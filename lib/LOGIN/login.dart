@@ -4,20 +4,34 @@ import 'package:flutter/material.dart';
 import 'package:project/LOGIN/forget_passwor.dart';
 import 'package:project/create%20account/signup.dart';
 import 'package:http/http.dart' as http;
+import 'package:project/provider/userprovider.dart';
 
 import 'package:project/shapes/LARTFF.dart';
 import 'package:project/shapes/endbutton.dart';
 import 'package:project/toggle.dart';
+import 'package:provider/provider.dart';
 
 
-class LogIn extends StatefulWidget {
+class LogIn extends StatelessWidget {
   const LogIn({super.key});
 
   @override
-  State<LogIn> createState() => _LogInState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: _LogInWidget(),
+    );
+  }
 }
 
-class _LogInState extends State<LogIn> {
+class _LogInWidget extends StatefulWidget {
+  const _LogInWidget({Key? key}) : super(key: key);
+
+  @override
+  _LogInState createState() => _LogInState();
+}
+
+class _LogInState extends State<_LogInWidget> {
   late final TextEditingController passwordController;
   late final TextEditingController emailController;
   Color buttonColor = Colors.grey;
@@ -71,6 +85,7 @@ class _LogInState extends State<LogIn> {
         final Map<String, dynamic> responseData = json.decode(response.body);
         userId = responseData['user']['id'];
         username = responseData['user']['name'];
+        context.read<AuthProvider>().setToken(token, userId, username);
 
         Navigator.push(
           context,
